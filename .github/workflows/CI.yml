@@ -17,15 +17,14 @@ jobs:
     steps:
       - name: Checkout to the repository
         uses: actions/checkout@v3
-            
-      - name: Read .nvmrc
-        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
-        id: nvm
         
-      - name: Use Node.js ${{ steps.nvm.outputs.NODE_VERSION }}
+      - name: Set up NodeJS environment
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
+          # Reads the node version from the .nvmrc file itself 
+          node-version-file: 'package.json'
+          # The node version can be hard-coded 
+          # node-version: 14
         
       # Consider this as an add on to optimize the execution of actions
       - name: Cache node modules
