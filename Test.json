@@ -1,0 +1,158 @@
+[
+    {
+        "region": "The Library Annex",
+        "regionData": [
+            {
+                "type": "Revelio",
+                "typeData": [
+                    {
+                        "index": 4,
+                        "key": "LORE_LibraryAnnex_DivinationObject",
+                        "time": 183,
+                        "video": "na_PmDfcgs8"
+                    },
+                    {
+                        "index": 3,
+                        "key": "LORE_CentralTower_ArithmancyClass",
+                        "time": 137,
+                        "video": "na_PmDfcgs8"
+                    }
+                ]
+            },
+            {
+                "type": "Flying",
+                "typeData": [
+                    {
+                        "index": 1,
+                        "key": "Collect_HW_AccioPage_SUB_ViaductEntrance_TECH_X=357028 Y=-465384 Z=-82611",
+                        "time": 66,
+                        "video": "na_PmDfcgs8"
+                    }
+                ]
+            },
+            {
+                "type": "ArithmancyChest",
+                "typeData": [
+                    {
+                        "index": 3,
+                        "key": "Chest_HW_ConjurationsRecipe_SUB_CentralTower_TECH_X=354736 Y=-466325 Z=-82099",
+                        "time": 97,
+                        "video": "na_PmDfcgs8"
+                    },
+                    {
+                        "index": 4,
+                        "key": "Chest_HW_ConjurationsRecipe_SUB_CentralTower_TECH_X=354557 Y=-465687 Z=-81900",
+                        "time": 144,
+                        "video": "na_PmDfcgs8"
+                    },
+                    {
+                        "index": 5,
+                        "key": "Chest_HW_ConjurationsRecipe_SUB_CentralTower_TECH_X=353458 Y=-465381 Z=-81900",
+                        "time": 165,
+                        "video": "na_PmDfcgs8"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "region": "Butterflies",
+        "regionData": [
+            {
+                "type": "ButterflyChest",
+                "typeData": [
+                    {
+                        "index": 1,
+                        "key": "6B564A7340A0AC3DCDBFD3913BFBA38A",
+                        "time": 0,
+                        "video": "ImMInXddlXE"
+                    },
+                    {
+                        "index": 2,
+                        "key": "020CB382495B83FF10AE92989DCD2224",
+                        "time": 26,
+                        "video": "ImMInXddlXE"
+                    },
+                    {
+                        "index": 3,
+                        "key": "3D831435444EE51F708EE6A52F50A90B",
+                        "time": 74,
+                        "video": "ImMInXddlXE"
+                    },
+                    {
+                        "index": 4,
+                        "key": "96EC885F4BFD778D9A51969F82C2D501",
+                        "time": 124,
+                        "video": "ImMInXddlXE"
+                    },
+                    {
+                        "index": 5,
+                        "key": "CC58F3784D0EF377BD9B4F8E17E4D2CE",
+                        "time": 168,
+                        "video": "ImMInXddlXE"
+                    },
+                    {
+                        "index": 6,
+                        "key": "1AA51C864FE6A530E3F4BB9F9C756BCF",
+                        "time": 217,
+                        "video": "ImMInXddlXE"
+                    },
+                    {
+                        "index": 7,
+                        "key": "1BB2918C44EE083A12C6EBA3FBE14E05",
+                        "time": 249,
+                        "video": "ImMInXddlXE"
+                    },
+                    {
+                        "index": 8,
+                        "key": "2A4608C648560C776AF520AF1292EA1E",
+                        "time": 283,
+                        "video": "ImMInXddlXE"
+                    },
+                    {
+                        "index": 9,
+                        "key": "98A08B7A4F05C6030F7D2CA3C5BFCA77",
+                        "time": 313,
+                        "video": "ImMInXddlXE"
+                    },
+                    {
+                        "index": 10,
+                        "key": "D164308E4D9F52F26368498D23F02F3D",
+                        "time": 341,
+                        "video": "ImMInXddlXE"
+                    },
+                    {
+                        "index": 11,
+                        "key": "0C8F4B164CE2544CA188028780075A1E",
+                        "time": 372,
+                        "video": "ImMInXddlXE"
+                    },
+                    {
+                        "index": 12,
+                        "key": "2AA750A14DE1F9D56436F4B6A161C7DE",
+                        "time": 402,
+                        "video": "ImMInXddlXE"
+                    },
+                    {
+                        "index": 13,
+                        "key": "51A9F29145EFD9A41DD98E844CB1F947",
+                        "time": 424,
+                        "video": "ImMInXddlXE"
+                    },
+                    {
+                        "index": 14,
+                        "key": "E0232B9947AA76398A46F7AE70A9DF33",
+                        "time": 479,
+                        "video": "ImMInXddlXE"
+                    },
+                    {
+                        "index": 15,
+                        "key": "9BE6249C4C82000DC08AA78ABA386B97",
+                        "time": 527,
+                        "video": "ImMInXddlXE"
+                    }
+                ]
+            }
+        ]
+    }
+]
