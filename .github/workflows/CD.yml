@@ -41,9 +41,15 @@ jobs:
       - name: Install package dependencies
         run: npm install
 
+#      - name: Deploy the app
+#        # This assumes that there is deploy script, change as required
+#        run: npm run deploy
+#        # Environment secrets, generally stored in Github Secrets (un-comment as required)
+#        env:
+#          deployment_token: ${{ secrets.ACTIONS_DEPLOYMENT_TOKEN }}
+
       - name: Deploy the app
-        # This assumes that there is deploy script, change as required
-        run: npm run deploy
-        # Environment secrets, generally stored in Github Secrets (un-comment as required)
-        # env:
-          # deployment_token: ${{ secrets.ACTIONS_DEPLOYMENT_TOKEN }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
