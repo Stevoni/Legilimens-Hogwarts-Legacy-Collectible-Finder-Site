@@ -19,12 +19,12 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build",
+    "build": "CI=false craco build",
     "test": "craco test",
     "eject": "craco eject",
     "postinstall": "copy-file-util node_modules/sql.js/dist/sql-wasm.wasm public/sql-wasm.wasm",
     "prestart": "npm run build",
-    "predeploy": "CI=false npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
