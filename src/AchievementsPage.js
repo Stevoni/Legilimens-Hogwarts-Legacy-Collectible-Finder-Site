@@ -2,23 +2,14 @@ import React, {useState, useEffect} from 'react';
 import CollapsibleRegion from './CollapsibleRegion';
 import UploadButton from './UploadButton';
 import AchievementsTable from './AchievementsTable';
-
-
-// import collectionDisplayDataSchema from "./CollectionDisplayDataSchema";
-import {
-    AFFECTED_TYPES,
-    // executeQuery, getData,
-    NAMES, QUERIES, TABLES
-} from './useProcessFile';
-import initSqlJs from "sql.js";
+import {NAMES, processFile} from './useProcessFile';
 import collectionDataSchema from "./CollectionDataSchema";
-// import Legilimens from "./test 2";
+import {initializeSqlClient} from "./SaveDatabase";
 
 // Build table from collections
 // Import file
 // Process file
 // Update records
-
 
 function AchievementsPage() {
 
@@ -34,6 +25,7 @@ function AchievementsPage() {
         }
         console.debug("handleFileUpload")
         const res = db.exec("SELECT name FROM sqlite_master WHERE type='table';")
+        // Todo: Add error message when database isn't loaded correctly and there aren't any tables
         console.debug(res);
         // {butterfly: butterflyBug, conjuration: conjurationBug, items: updatedCollectibles};
         let results = processFile(db, collectibles);
@@ -43,13 +35,6 @@ function AchievementsPage() {
         }
     };
 
-    const executeQuery = (datasource, query) => {
-        var result = null;
-        if (datasource != null) {
-            result = datasource.exec(query)
-        }
-        return result;
-    };
 
     function collectible_name(collectible) {
         let s = '',
@@ -68,69 +53,6 @@ function AchievementsPage() {
         return s;
     }
 
-    function processFile(database, collectibles) {
-
-        try {
-            // Read sql tables
-
-            const sqlData = [];
-            const errors = [];
-            // const save = database;
-            for (const [table, query] of Object.entries(QUERIES)) {
-                try {
-                    var temp = executeQuery(database, query);
-
-                    var temp2 = temp.map(x => {
-                        return x["values"].flat(10);
-                    });
-                    sqlData[table] = new Set(temp2);
-                    if (table === 'AchievementDynamic') {
-                        sqlData[table].delete('');
-                    }
-                } catch (err) {
-                    errors.push(...AFFECTED_TYPES[table]);
-                }
-            }
-            // save.close();
-            if (Object.keys(sqlData).length === 0) {
-                return {message: 'Legilimens was unable to read the database in your save file'};
-            }
-            if (errors.length) {
-                console.log('SQLite was unable to read parts of the database');
-                console.log(`The following collectible types were affected and won't work correctly: ${errors.join(', ')}`);
-            }
-            // Find collectibles
-            const updatedCollectibles = collectibles.map(collectible => {
-                console.debug(`type = ${collectible.type}; key = ${collectible.key}`)
-
-                if (TABLES[collectible.type] in sqlData) {
-                    collectible.collected =
-                        [...sqlData[TABLES[collectible.type]]][0].findIndex(x => x === collectible.key) > -1;
-                } else {
-                    collectible.collected = false;
-                }
-                return collectible;
-            });
-            // Check for butterfly bug
-            let butterflyBug = false;
-            if (['EconomicExpiryDynamic', 'PlayerStatsDynamic'].every(table => table in sqlData)) {
-                if ('PlayerStatsDynamic' in sqlData && sqlData['PlayerStatsDynamic'].has('COM_11') && collectibles.some(c => c.type === 'ButterflyChest' && c.index === 1 && !c.collected)) {
-                    butterflyBug = true;
-                }
-            }
-            // Check for conjuration bug
-            let conjurationBug = false;
-            if (['CollectionDynamic2', 'LootDropComponentDynamic', 'EconomicExpiryDynamic', 'MapLocationDataDynamic'].every(table => table in sqlData)) {
-                const chestsOpened = collectibles.filter(c => c.collected && ['MiscConjChest', 'ArithmancyChest', 'DungeonChest', 'ButterflyChest', 'VivariumChest'].includes(c.type)).length;
-                if ('CollectionDynamic2' in sqlData && chestsOpened > sqlData['CollectionDynamic2'].size) {
-                    conjurationBug = true;
-                }
-            }
-            return {butterfly: butterflyBug, conjuration: conjurationBug, items: updatedCollectibles};
-        } catch (err) {
-            throw new Error(err);
-        }
-    }
 
     function transformData(jsonData) {
         let transformedData = jsonData.reduce((accumulator, item) => {
@@ -196,10 +118,10 @@ function AchievementsPage() {
         console.debug("AchievementsPage.useEffect");
         const fetchData = async () => {
             // eslint-disable-next-line no-undef
-            const response = await fetch(process.env.PUBLIC_URL + "/Test2.json");
-            // response.text().then((txt)=> console.log(txt));
+            const response = await fetch(process.env.PUBLIC_URL + "/collectibles.json");
+            // Todo: add error handling for the response object?
             const jsonData = await response.json();
-            // console.log(jsonData);
+
             collectionDataSchema.validate(jsonData)
                 .then((validData) => {
                     // data is valid
@@ -213,21 +135,8 @@ function AchievementsPage() {
         };
         fetchData();
 
-
         // Pre-initialize SqlJs
-        const initializeSqlClient = async () => {
-            const SQL = await initSqlJs({
-                locateFile: (file) => {
-                    console.debug("locateFile", file);
-                    // eslint-disable-next-line no-undef
-                    let result = process.env.PUBLIC_URL +"/"+ file;
-                    console.log(result);
-                    return result;
-                }
-            });
-            setSqlClient(SQL);
-        }
-        initializeSqlClient();
+        initializeSqlClient().then((sql) => setSqlClient(sql));
 
     }, []);
 

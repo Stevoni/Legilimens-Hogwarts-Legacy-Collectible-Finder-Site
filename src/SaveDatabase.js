@@ -1,8 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, {useEffect, useState} from 'react';
-// import initSqlJs from 'sql.js';
-
-// database.js
+import initSqlJs from "sql.js";
 
 const MAGIC_HEADER = 'GVAS'
 const DB_IMAGE_STR = 'RawDatabaseImage'
@@ -59,15 +57,33 @@ export function loadDatabase(SQLClient, saveData) {
     return testDb;
 }
 
-// export function executeQuery(query) {
-//     var result = null;
-//     if (db != null) {
-//         result = db.exec("SELECT name FROM sqlite_master WHERE type='table';")
-//     }
-//     return result;
-// }
-
 function logAndThrowError(errorMessage) {
     console.error(errorMessage);
     throw new Error(errorMessage);
 }
+
+export const executeQuery = (datasource, query) => {
+    let result = null;
+    if (datasource != null) {
+        result = datasource.exec(query)
+    }
+    return result;
+};
+
+
+export const initializeSqlClient = async () => {
+    const sql = await initSqlJs({
+        locateFile: (file) => {
+            console.debug("locateFile", file);
+            // eslint-disable-next-line no-undef
+            let result = process.env.PUBLIC_URL + "/" + file;
+            console.debug("localFile.Result", result);
+            return result;
+        }
+    });
+    if (sql === null) {
+        logAndThrowError("Failed to initialize Sql.JS using initSqlJs");
+    }
+    return sql;
+}
+
