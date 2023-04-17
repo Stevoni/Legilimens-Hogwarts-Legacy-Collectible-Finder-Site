@@ -44,13 +44,6 @@ jobs:
       - name: Build
         run: npm run build
 
-#      - name: Deploy the app
-#        # This assumes that there is deploy script, change as required
-#        run: npm run deploy
-#        # Environment secrets, generally stored in Github Secrets (un-comment as required)
-#        env:
-#          deployment_token: ${{ secrets.ACTIONS_DEPLOYMENT_TOKEN }}
-
       - name: Deploy the app
         uses: JamesIves/github-pages-deploy-action@v4
         with:

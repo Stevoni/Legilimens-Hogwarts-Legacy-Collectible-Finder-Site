@@ -1,16 +1,15 @@
-import logo from './logo.svg';
+import React from 'react'
 import './style/App.css';
-import AchivementsPage from './AchivementsPage';
+import AchievementsPage from './AchievementsPage';
 import Header from "./Header";
 import Footer from "./Footer";
-import initSqlJs from 'sql.js';
 
 function App() {
 
     return (
         <div className="app">
             <Header/>
-            <AchivementsPage/>
+            <AchievementsPage/>
             <Footer />
         </div>
     );

@@ -164,6 +164,7 @@ export const REGIONS = [{'The Library Annex': 'Hogwarts',
 //     SphinxPuzzleDynamic: ['Merlin trials']
 // };
 
+/* eslint-disable */
 function MyComponent(props) {
     const [collectibles, setCollectibles] = useState([]);
     const [bugs, setBugs] = useState({});

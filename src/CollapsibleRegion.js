@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './style/collapsible-region.css'
 
+// eslint-disable-next-line react/prop-types
 function CollapsibleRegion({ title, children }) {
   const [isOpen, setIsOpen] = useState(false);
 

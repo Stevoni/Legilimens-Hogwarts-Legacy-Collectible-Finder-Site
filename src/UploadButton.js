@@ -1,28 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import initSqlJs from 'sql.js';
 import {loadDatabase, validateDatabase} from "./SaveDatabase";
-import App from "./App";
 
-const MAGIC_HEADER = 'GVAS'
-const DB_IMAGE_STR = 'RawDatabaseImage'
-
-function indexOfSequence(arr, seq) {
-    const seqLength = seq.length;
-    const arrLength = arr.length - seqLength;
-    for (let i = 0; i <= arrLength; i++) {
-        let j = 0;
-        while (j < seqLength && arr[i + j] === seq[j]) {
-            j++;
-        }
-        if (j === seqLength) {
-            return i;
-        }
-    }
-    return -1;
-}
-
+// eslint-disable-next-line react/prop-types
 function UploadButton({onFileUpload, toolTip, SQLClient}) {
     const [db, setDb] = useState(null);
+    // eslint-disable-next-line no-unused-vars
     const [error, setError] = useState(null);
 
     const handleFileChange = async (e) => {

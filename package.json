@@ -2,9 +2,9 @@
   "name": "collectible-finder-site",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://stevoni.github.io/Legilimens-Hogwarts-Legacy-Collectible-Finder-Site/",
+  "homepage": "https://stevoni.github.io/Legilimens-Hogwarts-Legacy-Collectible-Finder-Site",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=19.0.0"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -19,13 +19,14 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "CI=false craco build",
+    "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
     "postinstall": "copy-file-util node_modules/sql.js/dist/sql-wasm.wasm public/sql-wasm.wasm",
-    "prestart": "npm run build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "lint": "stylelint \"**/*.css\" && eslint \"**/*.js\"",
+    "lint-fix": "stylelint --fix \"**/*.css\" && eslint --fix \"**/*.js\""
   },
   "eslintConfig": {
     "extends": [
@@ -48,6 +49,8 @@
   "devDependencies": {
     "@craco/craco": "^7.0.0",
     "copy-file-util": "^1.0.0",
+    "eslint": "^8.38.0",
+    "eslint-plugin-react": "^7.32.2",
     "gh-pages": "^5.0.0",
     "stylelint": "^15.4.0",
     "stylelint-config-standard": "^32.0.0"

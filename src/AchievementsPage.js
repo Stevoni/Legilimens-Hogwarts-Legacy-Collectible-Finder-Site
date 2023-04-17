@@ -2,8 +2,14 @@ import React, {useState, useEffect} from 'react';
 import CollapsibleRegion from './CollapsibleRegion';
 import UploadButton from './UploadButton';
 import AchievementsTable from './AchievementsTable';
-import collectionDisplayDataSchema from "./CollectionDisplayDataSchema";
-import {AFFECTED_TYPES, executeQuery, getData, NAMES, QUERIES, TABLES} from './useProcessFile';
+
+
+// import collectionDisplayDataSchema from "./CollectionDisplayDataSchema";
+import {
+    AFFECTED_TYPES,
+    // executeQuery, getData,
+    NAMES, QUERIES, TABLES
+} from './useProcessFile';
 import initSqlJs from "sql.js";
 import collectionDataSchema from "./CollectionDataSchema";
 // import Legilimens from "./test 2";
@@ -14,7 +20,7 @@ import collectionDataSchema from "./CollectionDataSchema";
 // Update records
 
 
-function AchivementsPage() {
+function AchievementsPage() {
 
     const [db, setDb] = useState(null);
     const [collectibles, setCollectibles] = useState([]);
@@ -187,15 +193,17 @@ function AchivementsPage() {
     }
 
     useEffect(() => {
-        console.debug("AchivementsPage.useEffect");
+        console.debug("AchievementsPage.useEffect");
         const fetchData = async () => {
-            const response = await fetch('Test2.json');
+            // eslint-disable-next-line no-undef
+            const response = await fetch(process.env.PUBLIC_URL + "/test2.json");
+            // response.text().then((txt)=> console.log(txt));
             const jsonData = await response.json();
-
+            // console.log(jsonData);
             collectionDataSchema.validate(jsonData)
                 .then((validData) => {
                     // data is valid
-                    setCollectibles(jsonData);
+                    setCollectibles(validData);
                 })
                 .catch((error) => {
                     // data is invalid
@@ -208,7 +216,15 @@ function AchivementsPage() {
 
         // Pre-initialize SqlJs
         const initializeSqlClient = async () => {
-            const SQL = await initSqlJs()
+            const SQL = await initSqlJs({
+                locateFile: (file) => {
+                    console.debug("locateFile", file);
+                    // eslint-disable-next-line no-undef
+                    let result = process.env.PUBLIC_URL +"/"+ file;
+                    console.log(result);
+                    return result;
+                }
+            });
             setSqlClient(SQL);
         }
         initializeSqlClient();
@@ -233,4 +249,4 @@ function AchivementsPage() {
     );
 }
 
-export default AchivementsPage;
+export default AchievementsPage;

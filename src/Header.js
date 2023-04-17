@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 function Header() {
     const repoAddress = "https://github.com/Stevoni/Legilimens-Hogwarts-Legacy-Collectible-Finder-Site"
     const originalRepoAddress = "https://github.com/Malin001/Legilimens-Hogwarts-Legacy-Collectible-Finder"
