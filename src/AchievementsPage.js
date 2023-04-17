@@ -196,7 +196,7 @@ function AchievementsPage() {
         console.debug("AchievementsPage.useEffect");
         const fetchData = async () => {
             // eslint-disable-next-line no-undef
-            const response = await fetch(process.env.PUBLIC_URL + "/test2.json");
+            const response = await fetch(process.env.PUBLIC_URL + "/Test2.json");
             // response.text().then((txt)=> console.log(txt));
             const jsonData = await response.json();
             // console.log(jsonData);
