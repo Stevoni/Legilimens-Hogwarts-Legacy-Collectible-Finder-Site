@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Legilimens-Hogwarts-Legacy-Collectible-Finder-Site/static/css/main.a923b38c.css",
-    "main.js": "/Legilimens-Hogwarts-Legacy-Collectible-Finder-Site/static/js/main.f656ac64.js",
+    "main.css": "/Legilimens-Hogwarts-Legacy-Collectible-Finder-Site/static/css/main.24dbe9a7.css",
+    "main.js": "/Legilimens-Hogwarts-Legacy-Collectible-Finder-Site/static/js/main.e99453a0.js",
     "static/js/787.eae7dd4b.chunk.js": "/Legilimens-Hogwarts-Legacy-Collectible-Finder-Site/static/js/787.eae7dd4b.chunk.js",
     "index.html": "/Legilimens-Hogwarts-Legacy-Collectible-Finder-Site/index.html",
-    "main.a923b38c.css.map": "/Legilimens-Hogwarts-Legacy-Collectible-Finder-Site/static/css/main.a923b38c.css.map",
-    "main.f656ac64.js.map": "/Legilimens-Hogwarts-Legacy-Collectible-Finder-Site/static/js/main.f656ac64.js.map",
+    "main.24dbe9a7.css.map": "/Legilimens-Hogwarts-Legacy-Collectible-Finder-Site/static/css/main.24dbe9a7.css.map",
+    "main.e99453a0.js.map": "/Legilimens-Hogwarts-Legacy-Collectible-Finder-Site/static/js/main.e99453a0.js.map",
     "787.eae7dd4b.chunk.js.map": "/Legilimens-Hogwarts-Legacy-Collectible-Finder-Site/static/js/787.eae7dd4b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a923b38c.css",
-    "static/js/main.f656ac64.js"
+    "static/css/main.24dbe9a7.css",
+    "static/js/main.e99453a0.js"
   ]
 }
