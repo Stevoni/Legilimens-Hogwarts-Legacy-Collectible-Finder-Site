@@ -1,5 +1,6 @@
 import React from 'react';
 import useProcessFile from "./useProcessFile";
+import YoutubeEmbed from "./YoutubeEmbed";
 
 const doneIcon = "https://img.icons8.com/cotton/128/null/checkmark.png"
 const unknownIcon = "https://img.icons8.com/cotton/128/null/info--v4.png"
@@ -33,10 +34,8 @@ function AchievementsTable({database, collectibles}) {
                 <tr key={row.key}>
                     <td className="index">{row.name}</td>
                     <td className="video">
-                        <a href={`https://youtu.be/${row.video}&t=${row.time}`} target="_blank"
-                           rel="noopener noreferrer">
-                            {`https://youtu.be/${row.video}&t=${row.time}`}
-                        </a></td>
+                        <YoutubeEmbed embedId={row.video} startTime={row.time}/>
+                    </td>
                     <td className="state">
                         {row.collected !== undefined && row.collected === true &&
                             <img className="achievement-state" src={doneIcon}/>}

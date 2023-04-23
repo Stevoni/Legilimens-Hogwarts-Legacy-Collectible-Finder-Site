@@ -23,10 +23,10 @@ function AchievementsPage() {
         if (db == null) {
             return;
         }
-        console.debug("handleFileUpload")
-        const res = db.exec("SELECT name FROM sqlite_master WHERE type='table';")
+        // console.debug("handleFileUpload")
+        // const res = db.exec("SELECT name FROM sqlite_master WHERE type='table';")
         // Todo: Add error message when database isn't loaded correctly and there aren't any tables
-        console.debug(res);
+        // console.debug(res);
         // {butterfly: butterflyBug, conjuration: conjurationBug, items: updatedCollectibles};
         let results = processFile(db, collectibles);
 
@@ -115,7 +115,7 @@ function AchievementsPage() {
     }
 
     useEffect(() => {
-        console.debug("AchievementsPage.useEffect");
+        // console.debug("AchievementsPage.useEffect");
         const fetchData = async () => {
             // eslint-disable-next-line no-undef
             const response = await fetch(process.env.PUBLIC_URL + "/collectibles.json");

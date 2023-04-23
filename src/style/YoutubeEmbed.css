@@ -1,0 +1,37 @@
+
+.youtube-collapsible-region {
+  border: 1px solid #ccc;
+  margin: 10px;
+}
+
+.youtube-collapsible-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.youtube-arrow {
+  font-size: 20px;
+  transition: transform 0.2s;
+}
+
+.youtube-arrow.open {
+  transform: rotate(90deg);
+}
+
+.youtube-video-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+
+.youtube-video-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}

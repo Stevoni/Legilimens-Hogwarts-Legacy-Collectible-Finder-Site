@@ -133,7 +133,7 @@ export function processFile(database, collectibles) {
         }
         // Find collectibles
         const updatedCollectibles = collectibles.map(collectible => {
-            console.debug(`type = ${collectible.type}; key = ${collectible.key}`)
+            // console.debug(`type = ${collectible.type}; key = ${collectible.key}`)
 
             if (TABLES[collectible.type] in sqlData) {
                 collectible.collected =
