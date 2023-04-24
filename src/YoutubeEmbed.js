@@ -33,7 +33,7 @@ function YoutubeEmbed({embedId, startTime}) {
 
 YoutubeEmbed.propTypes = {
     embedId: PropTypes.string.isRequired,
-    startTime: PropTypes.string.isRequired,
+    startTime: PropTypes.number.isRequired,
 };
 
 export default YoutubeEmbed;

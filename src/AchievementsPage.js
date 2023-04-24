@@ -116,6 +116,7 @@ function AchievementsPage() {
 
     useEffect(() => {
         // console.debug("AchievementsPage.useEffect");
+
         const fetchData = async () => {
             // eslint-disable-next-line no-undef
             const response = await fetch(process.env.PUBLIC_URL + "/collectibles.json");
@@ -142,8 +143,7 @@ function AchievementsPage() {
 
     return (
         <div>
-            <UploadButton onFileUpload={handleFileUpload} toolTip="This is a tooltip" onDbChange={setDb}
-                          SQLClient={sqlClient}/>
+            <UploadButton onFileUpload={handleFileUpload} onDbChange={setDb} SQLClient={sqlClient}/>
             {displayCollectibles.map((region) => (
                 <CollapsibleRegion key={region.region} title={region.region}>
                     {region.regionData.map((type) => (
