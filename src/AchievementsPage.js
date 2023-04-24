@@ -17,7 +17,16 @@ function AchievementsPage() {
     const [collectibles, setCollectibles] = useState([]);
     const [displayCollectibles, setDisplayCollectibles] = useState([]);
     const [sqlClient, setSqlClient] = useState(null);
+    const [showCompleted, setShowCompleted] = useState(false);
 
+    function handleCheckboxChange(event) {
+        setShowCompleted(event.target.checked);
+    }
+
+    useEffect(() => {
+        // Todo: Only show incomplete when the showCompleted checkbox is true
+    }, [showCompleted]);
+    
     const handleFileUpload = (db) => {
         setDb(db);
         if (db == null) {
@@ -143,17 +152,21 @@ function AchievementsPage() {
 
     return (
         <div>
+
             <UploadButton onFileUpload={handleFileUpload} onDbChange={setDb} SQLClient={sqlClient}/>
+            <label>
+                Only show incomplete
+                <input type="checkbox" checked={showCompleted} onChange={handleCheckboxChange}/>
+            </label>
             {displayCollectibles.map((region) => (
                 <CollapsibleRegion key={region.region} title={region.region}>
                     {region.regionData.map((type) => (
                         <CollapsibleRegion key={type.type} title={type.type}>
-                            <AchievementsTable data={db} collectibles={type.typeData}/>
+                            <AchievementsTable data={db} collectibles={type.typeData} showCompleted={showCompleted}/>
                         </CollapsibleRegion>
                     ))}
                 </CollapsibleRegion>
             ))}
-
         </div>
     );
 }

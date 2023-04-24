@@ -1,4 +1,5 @@
-import React from 'react';
+// eslint-disable-next-line no-unused-vars
+import React, {useEffect} from 'react';
 import useProcessFile from "./useProcessFile";
 import YoutubeEmbed from "./YoutubeEmbed";
 
@@ -9,17 +10,20 @@ const unknownIcon = "https://img.icons8.com/cotton/128/null/info--v4.png"
 const unstartedIcon = "https://img.icons8.com/cotton/128/nulsl/cancel-2--v2.png"
 
 // eslint-disable-next-line react/prop-types
-function AchievementsTable({database, collectibles}) {
+function AchievementsTable({database, collectibles, showCompleted}) {
+
     // eslint-disable-next-line no-unused-vars
     const {data} = useProcessFile(database, collectibles, () => {
         console.log("onTableUpdate");
     })
 
-    // eslint-disable-next-line no-unused-vars
-    const onTableUpdate = () => {
-        console.log("onTableUpdate");
-    };
+    useEffect(() => {
+        // console.log("ShowCompleted Checked in AchievementTable", showCompleted);
+    }, [showCompleted])
+
     return (
+        // eslint-disable-next-line react/prop-types
+        collectibles && collectibles.some((row) => !showCompleted || (showCompleted && !row.collected)) &&
         <table className="achievement-table">
             <thead>
             <tr>
@@ -30,7 +34,7 @@ function AchievementsTable({database, collectibles}) {
             </thead>
             <tbody>
             {/* eslint-disable-next-line react/prop-types */}
-            {collectibles && collectibles.map((row) => (
+            {collectibles && collectibles.filter((row) => !showCompleted || (showCompleted && !row.collected)).map((row) => (
                 <tr key={row.key}>
                     <td className="index">{row.name}</td>
                     <td className="video">
@@ -47,6 +51,10 @@ function AchievementsTable({database, collectibles}) {
             ))}
             </tbody>
         </table>
+        ||
+        // eslint-disable-next-line react/prop-types
+        collectibles && collectibles.some((row) => !showCompleted || (showCompleted && !row.collected)) === false &&
+        <div style={{'textAlign': "center", 'font-weight': "bold"}}> Good job, all items collected! </div>
     );
 }
 

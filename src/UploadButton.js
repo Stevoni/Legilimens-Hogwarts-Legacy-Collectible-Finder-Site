@@ -10,7 +10,6 @@ function UploadButton({onFileUpload, SQLClient}) {
 
     const handleFileChange = async (e) => {
         const file = e.target.files[0];
-        console.log(e.target.files[0])
         if (!file) return;
         try {
 
