@@ -26,7 +26,7 @@ function AchievementsPage() {
     useEffect(() => {
         // Todo: Only show incomplete when the showCompleted checkbox is true
     }, [showCompleted]);
-    
+
     const handleFileUpload = (db) => {
         setDb(db);
         if (db == null) {

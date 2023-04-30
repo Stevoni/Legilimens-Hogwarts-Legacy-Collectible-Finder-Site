@@ -25,6 +25,7 @@ export const AFFECTED_TYPES = [{
     'PlayerStatsDynamic': ['Butterfly quest bug detector'],
     'CollectionDynamic2': ['Conjuration bug detector']
 }];
+
 export const TABLES = {
     'Revelio': 'CollectionDynamic',
     'Merlin': 'SphinxPuzzleDynamic',
@@ -115,6 +116,7 @@ export function processFile(database, collectibles) {
                 let temp2 = temp.map(x => {
                     return x["values"].flat(10);
                 });
+
                 sqlData[table] = new Set(temp2);
                 if (table === 'AchievementDynamic') {
                     sqlData[table].delete('');
@@ -133,14 +135,21 @@ export function processFile(database, collectibles) {
         }
         // Find collectibles
         const updatedCollectibles = collectibles.map(collectible => {
-            // console.debug(`type = ${collectible.type}; key = ${collectible.key}`)
-
             if (TABLES[collectible.type] in sqlData) {
-                collectible.collected =
+                // FinishingTouchEnemy is stored as a string delimited array that is incremented with the name of the enemy after they are killed with Ancient Magic
+                if(collectible.type !== "FinishingTouchEnemy"){
+                     collectible.collected =
                     [...sqlData[TABLES[collectible.type]]][0].findIndex(x => x === collectible.key) > -1;
+                }
+                else if(collectible.type === "FinishingTouchEnemy"){
+                     collectible.collected =
+                    [...sqlData[TABLES[collectible.type]]][0].findIndex(x =>
+                         x.split(',').findIndex(s=> s === collectible.key) > -1) > -1;
+                }
             } else {
                 collectible.collected = false;
             }
+            // console.debug(`type = ${collectible.type}; key = ${collectible.key}, collectible.collected ${collectible.collected}`)
             return collectible;
         });
         // Check for butterfly bug
