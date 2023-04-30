@@ -18,6 +18,8 @@ function AchievementsPage() {
     const [displayCollectibles, setDisplayCollectibles] = useState([]);
     const [sqlClient, setSqlClient] = useState(null);
     const [showCompleted, setShowCompleted] = useState(false);
+    const [hasConjurationBug, setHasConjurationBug] = useState(false);
+    const [hasButterflyBug, setHasButterflyBug] = useState(false);
 
     function handleCheckboxChange(event) {
         setShowCompleted(event.target.checked);
@@ -36,11 +38,13 @@ function AchievementsPage() {
         // const res = db.exec("SELECT name FROM sqlite_master WHERE type='table';")
         // Todo: Add error message when database isn't loaded correctly and there aren't any tables
         // console.debug(res);
-        // {butterfly: butterflyBug, conjuration: conjurationBug, items: updatedCollectibles};
+        // {hasButterflyBug: butterflyBug, hasConjurationBug: conjurationBug, items: updatedCollectibles};
         let results = processFile(db, collectibles);
 
         if (results.items != null) {
             setDisplayCollectibles(transformData(results.items));
+            setHasConjurationBug(results.hasConjurationBug);
+            setHasButterflyBug(results.hasButterflyBug);
         }
     };
 
@@ -152,12 +156,16 @@ function AchievementsPage() {
 
     return (
         <div>
-
             <UploadButton onFileUpload={handleFileUpload} onDbChange={setDb} SQLClient={sqlClient}/>
+
+            {hasButterflyBug && <div className="file-upload-error"><label>Possible butterfly bug</label><a href="https://arenaoftech.com/hogwarts-legacy-losing-butterflies-bug-fix/">More information at arenaoftech.com</a></div>}
+            {hasConjurationBug && <div className="file-upload-error"><label>Possible conjuration bug: </label><a href="https://arenaoftech.com/hogwarts-legacy-missing-conjuration-139-140-completion-fix/">More information at arenaoftech.com</a></div>}
+
             <label>
                 Only show incomplete
                 <input type="checkbox" checked={showCompleted} onChange={handleCheckboxChange}/>
             </label>
+
             {displayCollectibles.map((region) => (
                 <CollapsibleRegion key={region.region} title={region.region}>
                     {region.regionData.map((type) => (

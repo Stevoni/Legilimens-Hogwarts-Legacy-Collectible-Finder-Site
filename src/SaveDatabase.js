@@ -62,7 +62,7 @@ export function validateDatabase(saveFile) {
 
 export function loadDatabase(SQLClient, saveData) {
     const parameters = findDatabasesInFile(saveData, DB_IMAGE_STR);
-    
+
     // eslint-disable-next-line no-unused-vars
     const [testDb, dbData] = initializeDatabase(SQLClient, saveData, parameters);
 

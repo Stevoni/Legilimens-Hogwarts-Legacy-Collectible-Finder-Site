@@ -167,7 +167,7 @@ export function processFile(database, collectibles) {
                 conjurationBug = true;
             }
         }
-        return {butterfly: butterflyBug, conjuration: conjurationBug, items: updatedCollectibles};
+        return {hasButterflyBug: butterflyBug, hasConjurationBug: conjurationBug, items: updatedCollectibles};
     } catch (err) {
         throw new Error(err);
     }
